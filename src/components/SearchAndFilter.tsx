@@ -36,7 +36,7 @@ export default function SearchAndFilter({
           placeholder="Search stocks by name..."
           value={searchQuery}
           onChange={(e) => onSearch(e.target.value)}
-          className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
         />
         {searchQuery && (
           <button

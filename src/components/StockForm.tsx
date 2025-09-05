@@ -74,25 +74,25 @@ export default function StockForm({ stock, isOpen, onClose, onSubmit, mode }: St
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 backdrop-blur-sm">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+        <div className="flex items-center justify-between p-8 border-b border-slate-200">
+          <h2 className="text-2xl font-bold text-slate-900">
             {mode === 'create' ? 'Add New Stock' : 'Sell Stock'}
           </h2>
           <button
             onClick={onClose}
-            className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+            className="p-3 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-xl transition-all duration-200"
           >
-            <X className="h-5 w-5" />
+            <X className="h-6 w-6" />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-8 space-y-8">
           {mode === 'create' ? (
             <>
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="name" className="block text-sm font-bold text-slate-700 mb-3">
                   Stock Name
                 </label>
                 <input
@@ -102,14 +102,14 @@ export default function StockForm({ stock, isOpen, onClose, onSubmit, mode }: St
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-slate-900 font-medium"
                   placeholder="e.g., Apple Inc."
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="quantity" className="block text-sm font-bold text-slate-700 mb-3">
                     Quantity
                   </label>
                   <input
@@ -120,12 +120,12 @@ export default function StockForm({ stock, isOpen, onClose, onSubmit, mode }: St
                     onChange={handleInputChange}
                     required
                     min="1"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-slate-900 font-medium"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="buyPrice" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="buyPrice" className="block text-sm font-bold text-slate-700 mb-3">
                     Buy Price ($)
                   </label>
                   <input
@@ -137,13 +137,13 @@ export default function StockForm({ stock, isOpen, onClose, onSubmit, mode }: St
                     required
                     min="0"
                     step="0.01"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-slate-900 font-medium"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="buyDate" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="buyDate" className="block text-sm font-bold text-slate-700 mb-3">
                   Buy Date
                 </label>
                 <input
@@ -153,22 +153,22 @@ export default function StockForm({ stock, isOpen, onClose, onSubmit, mode }: St
                   value={formData.buyDate}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-slate-900 font-medium"
                 />
               </div>
             </>
           ) : (
             <>
-              <div className="p-4 bg-gray-50 rounded-lg">
-                <h3 className="font-medium text-gray-900 mb-2">{stock?.name}</h3>
-                <p className="text-sm text-gray-600">
+              <div className="p-6 bg-slate-50 rounded-xl border border-slate-200">
+                <h3 className="font-bold text-slate-900 mb-2 text-lg">{stock?.name}</h3>
+                <p className="text-sm text-slate-600 font-medium">
                   {stock?.quantity} shares @ {stock?.buyPrice ? `$${stock.buyPrice}` : 'N/A'}
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="sellPrice" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="sellPrice" className="block text-sm font-bold text-slate-700 mb-3">
                     Sell Price ($)
                   </label>
                   <input
@@ -180,12 +180,12 @@ export default function StockForm({ stock, isOpen, onClose, onSubmit, mode }: St
                     required
                     min="0"
                     step="0.01"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-slate-900 font-medium"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="sellDate" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="sellDate" className="block text-sm font-bold text-slate-700 mb-3">
                     Sell Date
                   </label>
                   <input
@@ -195,31 +195,31 @@ export default function StockForm({ stock, isOpen, onClose, onSubmit, mode }: St
                     value={formData.sellDate}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-slate-900 font-medium"
                   />
                 </div>
               </div>
             </>
           )}
 
-          <div className="flex space-x-3 pt-4">
+          <div className="flex space-x-4 pt-6">
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+              className="flex-1 px-6 py-4 text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition-all duration-200 font-medium"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="flex-1 px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors flex items-center justify-center space-x-2"
+              className="flex-1 px-6 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl transition-all duration-200 flex items-center justify-center space-x-3 font-medium shadow-lg hover:shadow-xl"
             >
               {isSubmitting ? (
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
               ) : (
                 <>
-                  {mode === 'create' ? <Plus className="h-4 w-4" /> : <Save className="h-4 w-4" />}
+                  {mode === 'create' ? <Plus className="h-5 w-5" /> : <Save className="h-5 w-5" />}
                   <span>{mode === 'create' ? 'Add Stock' : 'Sell Stock'}</span>
                 </>
               )}

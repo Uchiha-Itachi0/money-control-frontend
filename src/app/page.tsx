@@ -125,10 +125,10 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading your portfolio...</p>
+          <p className="text-slate-600 font-medium">Loading your portfolio...</p>
         </div>
       </div>
     );
@@ -136,19 +136,19 @@ export default function Dashboard() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center max-w-md mx-auto p-6">
-          <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-            <div className="text-red-600 mb-4">
-              <svg className="h-12 w-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="bg-red-50 border border-red-200 rounded-xl p-8 shadow-lg">
+            <div className="text-red-600 mb-6">
+              <svg className="h-16 w-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
               </svg>
             </div>
-            <h3 className="text-lg font-semibold text-red-800 mb-2">Connection Error</h3>
-            <p className="text-red-700 mb-4">{error}</p>
+            <h3 className="text-xl font-bold text-red-800 mb-3">Connection Error</h3>
+            <p className="text-red-700 mb-6 leading-relaxed">{error}</p>
             <button
               onClick={loadStocks}
-              className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+              className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-all duration-200 font-medium shadow-md hover:shadow-lg"
             >
               Try Again
             </button>
@@ -159,34 +159,34 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
+      <header className="bg-white shadow-sm border-b border-slate-200 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-3">
-              <div className="p-2 bg-blue-600 rounded-lg">
+            <div className="flex items-center space-x-4">
+              <div className="p-3 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl shadow-lg">
                 <TrendingUp className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">MoneyControl</h1>
-                <p className="text-sm text-gray-600">Portfolio Management</p>
+                <h1 className="text-2xl font-bold text-slate-900">MoneyControl</h1>
+                <p className="text-sm text-slate-600 font-medium">Portfolio Management</p>
               </div>
             </div>
             <button
               onClick={() => setIsFormOpen(true)}
-              className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
-              <Plus className="h-4 w-4" />
+              <Plus className="h-5 w-5" />
               <span>Add Stock</span>
             </button>
           </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-8">
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
           <TotalInvestedCard value={stats.totalInvested} />
           <TotalValueCard value={stats.totalValue} />
           <ProfitLossCard value={stats.totalProfitLoss} />
@@ -197,7 +197,7 @@ export default function Dashboard() {
 
         {/* Portfolio Charts */}
         {stocks.length > 0 && (
-          <div className="mb-8">
+          <div className="mb-6">
             <PortfolioChart stocks={stocks} />
           </div>
         )}
@@ -212,13 +212,13 @@ export default function Dashboard() {
 
         {/* Stocks Grid */}
         {filteredStocks.length === 0 ? (
-          <div className="text-center py-12">
-            <div className="bg-white rounded-xl border-2 border-dashed border-gray-300 p-12">
-              <TrendingUp className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+          <div className="text-center py-16">
+            <div className="bg-white rounded-2xl border-2 border-dashed border-slate-300 p-16 shadow-sm">
+              <TrendingUp className="h-16 w-16 text-slate-400 mx-auto mb-6" />
+              <h3 className="text-2xl font-bold text-slate-900 mb-3">
                 {searchQuery || activeFilter !== 'all' ? 'No stocks found' : 'No stocks yet'}
               </h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-slate-600 mb-8 text-lg leading-relaxed max-w-md mx-auto">
                 {searchQuery || activeFilter !== 'all' 
                   ? 'Try adjusting your search or filter criteria.'
                   : 'Start building your portfolio by adding your first stock.'
@@ -227,16 +227,16 @@ export default function Dashboard() {
               {!searchQuery && activeFilter === 'all' && (
                 <button
                   onClick={() => setIsFormOpen(true)}
-                  className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="inline-flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
-                  <Plus className="h-4 w-4" />
+                  <Plus className="h-5 w-5" />
                   <span>Add Your First Stock</span>
                 </button>
               )}
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredStocks.map((stock) => (
               <StockCard
                 key={stock.id}
